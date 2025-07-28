@@ -30,15 +30,9 @@ function guardarNombre() {
   const ficha = document.getElementById("numero-ficha").value.trim();
   const programa = document.getElementById("nombre-programa").value.trim();
   const correo = document.getElementById("correo-usuario").value.trim();
-  const autorizacion = document.getElementById("autorizacion").checked;
-  const tyc = document.getElementById("tyc").checked;
 
   if (!nombre || !documento || !ficha || !programa || !correo) {
     alert("Por favor, completa todos los campos.");
-    return;
-  }
-  if (!autorizacion) {
-    alert("Debes autorizar el tratamiento de datos personales.");
     return;
   }
 
