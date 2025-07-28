@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎮 Juego de Preguntas - Etapa Productiva</title>
+  <title>🎮 Juego de Preguntas - Exposición Perú</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
     <!-- Pantalla de bienvenida -->
     <section id="pantalla-inicio" class="pantalla">
       <div class="columna">
-       <div class="cuadro-superior">¡Buena Suerte, Apreciado Aprendiz! 🏆</div>
+       <div class="cuadro-superior">¡Buena Suerte, Negociador! 🏆</div>
        <h1>🎓 Bienvenido al Juego de Preguntas</h1>
        <img src="img/personaje_1.png" class="personaje-img" alt="Personaje de bienvenida" />
        <p>Haz clic para leer las instrucciones</p>
@@ -26,9 +26,9 @@
       <div class="columna">
         <h2>📋 Instrucciones</h2>
         <ul>
-          <p>🕐 Tienes 30 minutos para responder todas las preguntas. <!-- /li> -->
-          <p>❓ Cada pregunta tiene 40 segundos para responderse. <!-- /li> -->
-          <p>⛔ Si fallas o el tiempo acaba, recibirás retroalimentación. <!-- /li> -->
+          <p>🕐 Tienes 7 minutos para responder todas las preguntas. <!-- /li> -->
+          <p>❓ Cada pregunta tiene 60 segundos para responderse. <!-- /li> -->
+          <p>⛔ Si fallas o el tiempo acaba, perderas <!-- /li> -->
           <p>🏅 Al finalizar, verás tu puntaje y certificado. <!-- /li> -->
         </ul>
         <button onclick="mostrarPantallaNombre()">Continuar</button>
@@ -44,18 +44,6 @@
         <input type="number" id="numero-ficha" placeholder="No. Ficha" required />
         <input type="text" id="nombre-programa" placeholder="Nombre del Programa" required />
         <input type="email" id="correo-usuario" placeholder="Tu correo electrónico (Habilitado)" required />
-        <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="Blog-CDM-SENA" required />
-          Para mas información <a href="https://acortar.link/3ICIB9" target="_blank">visita el blog de CMD SENA</a>
-        </label>
-        <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="autorizacion" required />
-          Autorizo el <a href="https://acortar.link/WgHSmC" target="_blank">tratamiento de mis datos personales</a>
-        </label>
-         <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="tyc" required />
-          Acepto los <a href="https://acortar.link/0WNrAy" target="_blank">terminos y condiciones</a>
-        </label>
         <button onclick="guardarNombre()">Continuar</button>
       </div>
     </section>
@@ -63,35 +51,35 @@
     <!-- Pantalla intermedia de temas -->
     <section id="pantalla-temas" class="pantalla oculto">
   <div class="columna">
-    <h2>📚 ¿Qué aprenderás en este juego?</h2>
+    <h2>📚 ¿De que trata este juego?</h2>
     <div class="grid-temas">
       <div class="tema-cubo">
         🧠
-        <div class="descripcion-tema">Generalidades Etapa Productiva.</div>
+        <div class="descripcion-tema">Generalidades De La exposicón.</div>
       </div>
       <div class="tema-cubo">
         📘
-        <div class="descripcion-tema">Normatividad.</div>
+        <div class="descripcion-tema">Acuerdos Comerciales.</div>
       </div>
       <div class="tema-cubo">
         📗
-        <div class="descripcion-tema">Formatos y Documentos.</div>
+        <div class="descripcion-tema">Oportunidades De Negocio.</div>
       </div>
       <div class="tema-cubo">
         🛡️
-        <div class="descripcion-tema">Visitas y Seguimiento.</div>
+        <div class="descripcion-tema">Datos Y Cifras.</div>
       </div>
       <div class="tema-cubo">
         🤝
-        <div class="descripcion-tema">Contrato de Aprendizaje.</div>
+        <div class="descripcion-tema">Exportaciones De Colombia.</div>
       </div>
       <div class="tema-cubo">
         📊
-        <div class="descripcion-tema">Alternativas de Etapa Productiva.</div>
+        <div class="descripcion-tema">Ferias y Ruedas De Negocio</div>
       </div>
       <div class="tema-cubo">
         🎯
-        <div class="descripcion-tema">Contrato Laboral</div>
+        <div class="descripcion-tema">Tips De Negociación</div>
       </div>
     </div>
     <button onclick="mostrarPantallaJuego()">Estoy listo, comenzar</button>
@@ -102,10 +90,10 @@
     <!-- Pantalla del juego -->
     <section id="pantalla-juego" class="pantalla oculto">
       <div class="barra-top">
-        <span>⏱️ Total: <span id="tiempo-total">30</span>mn</span>
-        <span>🎯 Pregunta: <span id="tiempo-pregunta">20</span>s</span>
+        <span>⏱️ Total: <span id="tiempo-total">7</span>mn</span>
+        <span>🎯 Pregunta: <span id="tiempo-pregunta">60</span>s</span>
         <span>⭐ Puntaje: <span id="puntaje">0</span></span>
-        <span>📊 Progreso: <span id="progreso-pregunta">1</span>/20</span>
+        <span>📊 Progreso: <span id="progreso-pregunta">1</span>/5</span>
       </div>
       <div class="contenido-pregunta">
         <h2 id="pregunta">Pregunta aquí</h2>
