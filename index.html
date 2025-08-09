@@ -20,17 +20,6 @@
         <img src="img/personaje_1.png" class="personaje-img" alt="Personaje de bienvenida" />
         <p>Haz clic para leer las instrucciones</p>
         <button onclick="mostrarInstrucciones()">Ver Instrucciones</button>
-
-        <!-- Créditos -->
-        <div class="autor">
-          <span>by Gabriel Otálora</span>
-          <a href="https://www.linkedin.com/in/gabriel-otalora-5a0290303/" target="_blank">
-            <img src="img/linkedin.png" alt="LinkedIn">
-          </a>
-          <a href="https://wa.link/ctc2na">
-            <img src="img/telefono.png" alt="Teléfono">
-          </a>
-        </div>
       </div>
     </section>
 
@@ -63,35 +52,6 @@
         <input type="number" id="numero-ficha" placeholder="No. Ficha o Grupo" required />
         <input type="text" id="nombre-programa" placeholder="Nombre del Programa" required />
         <input type="email" id="correo-usuario" placeholder="Tu correo electrónico (Habilitado)" required />
-
-        <!-- Selección del instructor -->
-        <select id="instructor" required>
-          <option value="" disabled selected>Selecciona el instructor</option>
-          <option value="Alba Isabel Lopez">Alba Isabel Lopez</option>
-          <option value="Jaime Torres">Jaime Torres</option>
-          <option value="Daniel Orjuela">Daniel Orjuela</option>
-          <option value="Rodrigo Acero">Rodrigo Acero</option>
-          <option value="Milcon Montenegro">Milcon Montenegro</option>
-          <option value="Juan Botello">Juan Botello</option>
-          <option value="Daniel Acero">Daniel Acero</option>
-        </select>
-
-        <!-- Checkboxes obligatorios -->
-        <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="Blog-CDM-SENA" required />
-          Para más información <a href="https://acortar.link/3ICIB9" target="_blank">visita el blog de CMD SENA</a>
-        </label>
-        <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="autorizacion" required />
-          Autorizo el <a href="https://acortar.link/WgHSmC" target="_blank">tratamiento de mis datos personales</a>
-        </label>
-        <label style="font-size: 14px; display: block; margin-top: 10px;">
-          <input type="checkbox" id="tyc" required />
-          Acepto los <a href="https://acortar.link/0WNrAy" target="_blank">términos y condiciones</a>
-        </label>
-
-        <button onclick="guardarNombre()">Continuar</button>
-      </div>
     </section>
 
     <!-- =====================================================
