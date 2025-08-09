@@ -51,18 +51,13 @@ function guardarNombre() {
   const ficha = document.getElementById("numero-ficha").value.trim();
   const programa = document.getElementById("nombre-programa").value.trim();
   const correo = document.getElementById("correo-usuario").value.trim();
-  nombreInstructor = document.getElementById("instructor").value.trim();
-  const autorizacion = document.getElementById("autorizacion").checked;
 
   // 🔍 Validaciones básicas
   if (!nombre || !documento || !ficha || !programa || !correo || !nombreInstructor) {
     alert("Por favor, completa todos los campos.");
     return;
   }
-  if (!autorizacion) {
-    alert("Debes autorizar el tratamiento de datos personales.");
-    return;
-  }
+
 
   // 💾 Guardar en variables globales
   nombreJugador = nombre;
@@ -71,15 +66,6 @@ function guardarNombre() {
   numeroDocumento = documento;
   nombrePrograma = programa;
 
-  // 📆 Validar fecha de habilitación del juego
-  firebase.database().ref("configuracionJuego").once("value").then(snapshot => {
-    const config = snapshot.val();
-    const hoy = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
-
-    if (!config || hoy < config.fechaInicio || hoy > config.fechaFin) {
-      alert("⛔ El juego no está habilitado en esta fecha. Consulta con tu instructor.");
-      return;
-    }
 
     // 📊 Validar número de intentos diarios
     const fecha = new Date().toISOString().split("T")[0];
