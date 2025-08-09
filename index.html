@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎮 Juego de Preguntas - Etapa Productiva</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main-layout">
+
+    <!-- =====================================================
+         📌 PANTALLA DE BIENVENIDA
+         Función: Mostrar mensaje inicial y botón para ver instrucciones
+    ====================================================== -->
+    <section id="pantalla-inicio" class="pantalla">
+      <div class="columna">
+        <div class="cuadro-superior">¡Buena Suerte, Apreciado Aprendiz! 🏆</div>
+        <h1>🎓 Bienvenido al Juego de Preguntas</h1>
+        <img src="img/personaje_1.png" class="personaje-img" alt="Personaje de bienvenida" />
+        <p>Haz clic para leer las instrucciones</p>
+        <button onclick="mostrarInstrucciones()">Ver Instrucciones</button>
+
+        <!-- Créditos -->
+        <div class="autor">
+          <span>by Gabriel Otálora</span>
+          <a href="https://www.linkedin.com/in/gabriel-otalora-5a0290303/" target="_blank">
+            <img src="img/linkedin.png" alt="LinkedIn">
+          </a>
+          <a href="https://wa.link/ctc2na">
+            <img src="img/telefono.png" alt="Teléfono">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         📋 PANTALLA DE INSTRUCCIONES
+         Función: Mostrar las reglas y funcionamiento del juego
+    ====================================================== -->
+    <section id="pantalla-instrucciones" class="pantalla oculto">
+      <div class="columna">
+        <h2>📋 Instrucciones</h2>
+        <ul>
+          <p>🕐 Tienes 30 minutos para responder todas las preguntas.</p>
+          <p>❓ Cada pregunta tiene 40 segundos para responderse.</p>
+          <p>⛔ Si fallas o el tiempo acaba, recibirás retroalimentación.</p>
+          <p>🏅 Al finalizar, verás tu puntaje y certificado.</p>
+        </ul>
+        <button onclick="mostrarPantallaNombre()">Continuar</button>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         📝 PANTALLA DE REGISTRO DEL JUGADOR
+         Función: Guardar datos del aprendiz antes de iniciar
+    ====================================================== -->
+    <section id="pantalla-nombre" class="pantalla oculto">
+      <div class="columna">
+        <h2>👤 Registro del jugador</h2>
+        <input type="text" id="nombre-usuario" placeholder="Tu nombre completo" required />
+        <input type="number" id="numero-documento" placeholder="No. Documento" required />
+        <input type="number" id="numero-ficha" placeholder="No. Ficha o Grupo" required />
+        <input type="text" id="nombre-programa" placeholder="Nombre del Programa" required />
+        <input type="email" id="correo-usuario" placeholder="Tu correo electrónico (Habilitado)" required />
+
+        <!-- Selección del instructor -->
+        <select id="instructor" required>
+          <option value="" disabled selected>Selecciona el instructor</option>
+          <option value="Alba Isabel Lopez">Alba Isabel Lopez</option>
+          <option value="Jaime Torres">Jaime Torres</option>
+          <option value="Daniel Orjuela">Daniel Orjuela</option>
+          <option value="Rodrigo Acero">Rodrigo Acero</option>
+          <option value="Milcon Montenegro">Milcon Montenegro</option>
+          <option value="Juan Botello">Juan Botello</option>
+          <option value="Daniel Acero">Daniel Acero</option>
+        </select>
+
+        <!-- Checkboxes obligatorios -->
+        <label style="font-size: 14px; display: block; margin-top: 10px;">
+          <input type="checkbox" id="Blog-CDM-SENA" required />
+          Para más información <a href="https://acortar.link/3ICIB9" target="_blank">visita el blog de CMD SENA</a>
+        </label>
+        <label style="font-size: 14px; display: block; margin-top: 10px;">
+          <input type="checkbox" id="autorizacion" required />
+          Autorizo el <a href="https://acortar.link/WgHSmC" target="_blank">tratamiento de mis datos personales</a>
+        </label>
+        <label style="font-size: 14px; display: block; margin-top: 10px;">
+          <input type="checkbox" id="tyc" required />
+          Acepto los <a href="https://acortar.link/0WNrAy" target="_blank">términos y condiciones</a>
+        </label>
+
+        <button onclick="guardarNombre()">Continuar</button>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         📚 PANTALLA DE TEMAS
+         Función: Mostrar los temas que se evaluarán
+    ====================================================== -->
+    <section id="pantalla-temas" class="pantalla oculto">
+      <div class="columna">
+        <h2>📚 ¿Qué aprenderás en este juego?</h2>
+        <div class="grid-temas">
+          <div class="tema-cubo">🧠<div class="descripcion-tema">Generalidades Etapa Productiva.</div></div>
+          <div class="tema-cubo">📘<div class="descripcion-tema">Normatividad.</div></div>
+          <div class="tema-cubo">📗<div class="descripcion-tema">Formatos y Documentos.</div></div>
+          <div class="tema-cubo">🛡️<div class="descripcion-tema">Visitas y Seguimiento.</div></div>
+          <div class="tema-cubo">🤝<div class="descripcion-tema">Contrato de Aprendizaje.</div></div>
+          <div class="tema-cubo">📊<div class="descripcion-tema">Alternativas de Etapa Productiva.</div></div>
+          <div class="tema-cubo">🎯<div class="descripcion-tema">Contrato Laboral.</div></div>
+        </div>
+        <button onclick="mostrarPantallaJuego()">Estoy listo, comenzar</button>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         🎯 PANTALLA DEL JUEGO
+         Función: Mostrar preguntas, opciones y control de tiempo
+    ====================================================== -->
+    <section id="pantalla-juego" class="pantalla oculto">
+      <!-- Barra de estado superior -->
+      <div class="barra-top">
+        <span>⏱️ Total: <span id="tiempo-total">30</span>mn</span>
+        <span>🎯 Pregunta: <span id="tiempo-pregunta">20</span>s</span>
+        <span>⭐ Puntaje: <span id="puntaje">0</span></span>
+        <span>📊 Progreso: <span id="progreso-pregunta">1</span>/20</span>
+      </div>
+
+      <!-- Contenido de la pregunta -->
+      <div class="contenido-pregunta">
+        <h2 id="pregunta">Pregunta aquí</h2>
+        <div id="opciones"></div>
+        <p id="respuesta"></p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         🏆 PANTALLA FINAL
+         Función: Mostrar resultados y botón para reiniciar
+    ====================================================== -->
+    <section id="pantalla-final" class="pantalla oculto">
+      <div class="columna">
+        <div class="cuadro-superior">¡Felicidades, lo lograste! 🎉</div>
+        <img src="img/personaje_2.png" class="personaje-img" alt="Ganador"/>
+        <h2>🏁 ¡Juego terminado!</h2>
+        <p>👤 Nombre: <span id="nombre-final"></span></p>
+        <p>✅ Correctas: <span id="correctas"></span></p>
+        <p>❌ Incorrectas: <span id="incorrectas"></span></p>
+        <p>🏆 Puntaje final: <span id="puntaje-final"></span></p>
+        <p>📈 Porcentaje de aciertos: <span id="porcentaje-final"></span>%</p>
+        <button onclick="volverAlInicio()">Volver al inicio</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =====================================================
+       🔥 CONFIGURACIÓN DE FIREBASE
+  ====================================================== -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnQmokqGYHPpMTYZxMlKylxHpy6LnDpyk",
+      authDomain: "data-user-juego-ep.firebaseapp.com",
+      databaseURL: "https://data-user-juego-ep-default-rtdb.firebaseio.com",
+      projectId: "data-user-juego-ep",
+      storageBucket: "data-user-juego-ep.firebasestorage.app",
+      messagingSenderId: "238908862819",
+      appId: "1:238908862819:web:218bf159e1903bf1c96356"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>
