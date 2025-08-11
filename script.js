@@ -221,7 +221,7 @@ function finalizarJuego() {
   const duracionSegundos = Math.round((finJuego - inicioJuego) / 1000);
   const promedioPregunta = (duracionSegundos / preguntas.length).toFixed(2);
   const porcentaje = (respuestasCorrectas / preguntas.length) * 100;
-  const estado = porcentaje >= 80 ? "Aprobado" : "Reprobado";
+  const estado = porcentaje >= 95 ? "Aprobado" : "Reprobado";
 
   // Mostrar pantalla final
   clearInterval(intervaloTotal);
@@ -237,11 +237,11 @@ function finalizarJuego() {
   guardarResultadoFirebase(duracionSegundos, promedioPregunta, estado);
 
   // Enviar solo si aprueba
-  if (porcentaje >= 80) {
+  if (porcentaje >= 95) {
     enviarDatosUnificados(porcentaje, duracionSegundos, promedioPregunta, estado);
     alert("✅ Tu certificado será enviado a tu correo.");
   } else {
-    alert("❌ Debes acertar mínimo el 80% para obtener el certificado.");
+    alert("❌ Debes acertar mínimo el 95% para obtener el certificado.");
   }
 }
 
