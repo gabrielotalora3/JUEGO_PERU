@@ -31,9 +31,9 @@
       <div class="columna">
         <h2>📋 Instrucciones</h2>
         <ul>
-          <p>🕐 Tienes 30 minutos para responder todas las preguntas.</p>
-          <p>❓ Cada pregunta tiene 40 segundos para responderse.</p>
-          <p>⛔ Si fallas o el tiempo acaba, recibirás retroalimentación.</p>
+          <p>🕐 Tienes 7 minutos para responder todas las preguntas.</p>
+          <p>❓ Cada pregunta tiene 35 segundos para responderse.</p>
+          <p>⛔ Si fallas o el tiempo acaba, perdera.</p>
           <p>🏅 Al finalizar, verás tu puntaje y certificado.</p>
         </ul>
         <button onclick="mostrarPantallaNombre()">Continuar</button>
@@ -61,13 +61,13 @@
       <div class="columna">
         <h2>📚 ¿Qué aprenderás en este juego?</h2>
         <div class="grid-temas">
-          <div class="tema-cubo">🧠<div class="descripcion-tema">Generalidades Etapa Productiva.</div></div>
-          <div class="tema-cubo">📘<div class="descripcion-tema">Normatividad.</div></div>
-          <div class="tema-cubo">📗<div class="descripcion-tema">Formatos y Documentos.</div></div>
-          <div class="tema-cubo">🛡️<div class="descripcion-tema">Visitas y Seguimiento.</div></div>
-          <div class="tema-cubo">🤝<div class="descripcion-tema">Contrato de Aprendizaje.</div></div>
-          <div class="tema-cubo">📊<div class="descripcion-tema">Alternativas de Etapa Productiva.</div></div>
-          <div class="tema-cubo">🎯<div class="descripcion-tema">Contrato Laboral.</div></div>
+          <div class="tema-cubo">🧠<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">📘<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">📗<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">🛡️<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">🤝<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">📊<div class="descripcion-tema"></div></div>
+          <div class="tema-cubo">🎯<div class="descripcion-tema"></div></div>
         </div>
         <button onclick="mostrarPantallaJuego()">Estoy listo, comenzar</button>
       </div>
@@ -80,10 +80,10 @@
     <section id="pantalla-juego" class="pantalla oculto">
       <!-- Barra de estado superior -->
       <div class="barra-top">
-        <span>⏱️ Total: <span id="tiempo-total">30</span>mn</span>
-        <span>🎯 Pregunta: <span id="tiempo-pregunta">20</span>s</span>
+        <span>⏱️ Total: <span id="tiempo-total">7</span>mn</span>
+        <span>🎯 Pregunta: <span id="tiempo-pregunta">35</span>s</span>
         <span>⭐ Puntaje: <span id="puntaje">0</span></span>
-        <span>📊 Progreso: <span id="progreso-pregunta">1</span>/20</span>
+        <span>📊 Progreso: <span id="progreso-pregunta">1</span>/7</span>
       </div>
 
       <!-- Contenido de la pregunta -->
