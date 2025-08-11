@@ -17,7 +17,7 @@ let intervaloPregunta;        // Intervalo para el temporizador de cada pregunta
 let resultadoEnviado = false; // Evita envíos duplicados de resultados
 
 // URL unificada de Google Apps Script para envío de datos
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwcIYnQQWvADG7BSu5Fd8wXHxPQqBt7sxKBLZKnqqVTLFWb88gmqitvqiij2Gnw6NT8/exec";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyGprAqv_24mCA7oloPUO3lWaAb81ZqBj1kCM3o5NKUB_Q1jTJFhJ1NWpi5lGx7mV1e/exec";
 
 
 /* =============================================
@@ -260,41 +260,32 @@ function guardarResultadoFirebase(duracion, promedio, estado) {
 function enviarDatosUnificados(porcentaje, duracion, promedio, estado) {
   const fecha = new Date().toLocaleString();
 
-  const bodyData = {
-    nombre: nombreJugador,
-    correo: correoUsuario,
-    puntaje: puntaje,
-    correctas: respuestasCorrectas,
-    incorrectas: respuestasIncorrectas,
-    fecha: fecha,
-    porcentaje: porcentaje,
-    duracion: duracion,
-    promedio: promedio,
-    estado: estado
-  };
+  const formData = new FormData();
+  formData.append("nombre", nombreJugador);
+  formData.append("correo", correoUsuario);
+  formData.append("puntaje", puntaje);
+  formData.append("correctas", respuestasCorrectas);
+  formData.append("incorrectas", respuestasIncorrectas);
+  formData.append("fecha", fecha);
+  formData.append("porcentaje", porcentaje);
+  formData.append("duracion", duracion);
+  formData.append("promedio", promedio);
+  formData.append("estado", estado);
 
-  fetch(WEBAPP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(bodyData)
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("Respuesta del WebApp:", data);
-    if (data.status === "OK") {
-      alert("Certificado enviado correctamente");
-    } else {
-      alert("Error: " + data.message);
-    }
-  })
-  .catch(err => {
-    console.error("Error en fetch hacia WebApp:", err);
-    alert("No fue posible guardar en Sheets / generar certificado.");
-  });
+  fetch(WEBAPP_URL, { method: "POST", body: formData })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Respuesta:", data);
+      if (data.url) {
+        alert("Certificado generado: " + data.url);
+        window.open(data.url, "_blank");
+      }
+    })
+    .catch(err => {
+      console.error("Error:", err);
+      alert("No se pudo guardar/generar certificado");
+    });
 }
-
-
-
 
 /* =============================================
    UTILIDADES
