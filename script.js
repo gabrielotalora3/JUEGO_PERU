@@ -55,7 +55,7 @@ function guardarNombre() {
   if (!nombre || !documento || !ficha || !programa || !correo ) {
     alert("Por favor, completa todos los campos.");
     return;
-
+  }
 
   // 💾 Guardar en variables globales
   nombreJugador = nombre;
