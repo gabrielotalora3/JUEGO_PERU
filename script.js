@@ -10,8 +10,8 @@ let respuestasCorrectas = 0;  // Total de respuestas correctas
 let respuestasIncorrectas = 0;// Total de respuestas incorrectas
 let puntaje = 0;              
 
-let tiempoTotal = 1800;       // ⏱️ Tiempo total del juego en segundos (30 min)
-let tiempoPregunta = 55;      // ⏱️ Tiempo por pregunta en segundos
+let tiempoTotal = 600;       // ⏱️ Tiempo total del juego en segundos (30 min)
+let tiempoPregunta = 40;      // ⏱️ Tiempo por pregunta en segundos
 let intervaloTotal;           // Intervalo para el temporizador global
 let intervaloPregunta;        // Intervalo para el temporizador de cada pregunta
 let resultadoEnviado = false; // Evita envíos duplicados de resultados
@@ -185,7 +185,7 @@ function verificarRespuesta(index) {
     mostrarRetroalimentacion("✅ ¡Respuesta correcta!");
   } else {
     respuestasIncorrectas++;
-    mostrarRetroalimentacion("❌ Incorrecta. " + pregunta.retroalimentacion);
+    mostrarRetroalimentacion("❌ Incorrecta. ");
   }
   
   document.getElementById("puntaje").textContent = puntaje;
@@ -221,7 +221,7 @@ function finalizarJuego() {
   const duracionSegundos = Math.round((finJuego - inicioJuego) / 1000);
   const promedioPregunta = (duracionSegundos / preguntas.length).toFixed(2);
   const porcentaje = (respuestasCorrectas / preguntas.length) * 100;
-  const estado = porcentaje >= 80 ? "Aprobado" : "Reprobado";
+  const estado = porcentaje >= 95 ? "Aprobado" : "Reprobado";
 
   // Mostrar pantalla final
   clearInterval(intervaloTotal);
@@ -238,7 +238,7 @@ function finalizarJuego() {
   enviarDatosUnificados(porcentaje, duracionSegundos, promedioPregunta, estado);
 
   // Mensaje final
-  if (porcentaje >= 80) {
+  if (porcentaje >= 95) {
     alert("✅ Tu certificado será enviado a tu correo.");
   } else {
     alert("Debes acertar mínimo el 80% para obtener el certificado.");
