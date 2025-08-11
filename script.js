@@ -17,7 +17,7 @@ let intervaloPregunta;        // Intervalo para el temporizador de cada pregunta
 let resultadoEnviado = false; // Evita envíos duplicados de resultados
 
 // URL unificada de Google Apps Script para envío de datos
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzmCgffpmGKRksuYF64EjdSDV468YPzMlvym3xchFt5O64wG3fIvXZCqJvNwGpUa90/exec";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwcIYnQQWvADG7BSu5Fd8wXHxPQqBt7sxKBLZKnqqVTLFWb88gmqitvqiij2Gnw6NT8/exec";
 
 
 /* =============================================
