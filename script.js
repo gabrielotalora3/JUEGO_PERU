@@ -64,15 +64,6 @@ function guardarNombre() {
   numeroDocumento = documento;
   nombrePrograma = programa;
 
-  // 📆 Validar fecha de habilitación del juego
-  firebase.database().ref("configuracionJuego").once("value").then(snapshot => {
-    const config = snapshot.val();
-    const hoy = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
-
-    if (!config || hoy < config.fechaInicio || hoy > config.fechaFin) {
-      alert("⛔ El juego no está habilitado en esta fecha. Consulta con tu instructor.");
-      return;
-    }
 
     // 📊 Validar número de intentos diarios
     const fecha = new Date().toISOString().split("T")[0];
