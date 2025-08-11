@@ -6,7 +6,6 @@ let numeroDocumento = "";
 let numeroFicha = "";
 let nombrePrograma = "";
 let correoUsuario = "";
-let nombreInstructor = "";
 
 let preguntas = [];           // Lista de preguntas cargadas
 let preguntaActual = 0;       // Índice de la pregunta en curso
@@ -55,14 +54,10 @@ function guardarNombre() {
   const autorizacion = document.getElementById("autorizacion").checked;
 
   // 🔍 Validaciones básicas
-  if (!nombre || !documento || !ficha || !programa || !correo || !nombreInstructor) {
+  if (!nombre || !documento || !ficha || !programa || !correo ) {
     alert("Por favor, completa todos los campos.");
     return;
-  }
-  if (!autorizacion) {
-    alert("Debes autorizar el tratamiento de datos personales.");
-    return;
-  }
+
 
   // 💾 Guardar en variables globales
   nombreJugador = nombre;
