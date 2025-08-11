@@ -42,22 +42,16 @@ function mostrarPantallaNombre() {
 ============================================= */
 function guardarNombre() {
   const nombre = document.getElementById("nombre-usuario").value.trim();
-  const documento = document.getElementById("numero-documento").value.trim();
-  const ficha = document.getElementById("numero-ficha").value.trim();
-  const programa = document.getElementById("nombre-programa").value.trim();
   const correo = document.getElementById("correo-usuario").value.trim();
 
-  if (!nombre || !documento || !ficha || !programa || !correo) {
+  if (!nombre || !correo) {
     alert("Por favor, completa todos los campos.");
     return;
   }
 
   // 💾 Guardar en variables globales
   nombreJugador = nombre;
-  numeroFicha = ficha;
   correoUsuario = correo;
-  numeroDocumento = documento;
-  nombrePrograma = programa;
 
   // 📊 Validar número de intentos diarios
   const fecha = new Date().toISOString().split("T")[0];
