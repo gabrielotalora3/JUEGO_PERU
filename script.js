@@ -260,44 +260,39 @@ function guardarResultadoFirebase(duracion, promedio, estado) {
 function enviarDatosUnificados(porcentaje, duracion, promedio, estado) {
   const fecha = new Date().toLocaleString();
 
-  const bodyData = new URLSearchParams({
-    "entry.105909403": nombreJugador,
-    "entry.1135649126": correoUsuario,
-    "entry.1441609907": puntaje,
-    "entry.1508603064": respuestasCorrectas,
-    "entry.1520154915": respuestasIncorrectas,
-    "fecha": fecha,
-    "porcentaje": porcentaje,
-    "duracion": duracion,
-    "promedio": promedio,
-    "estado": estado
-  });
+  const bodyData = {
+    nombre: nombreJugador,
+    correo: correoUsuario,
+    puntaje: puntaje,
+    correctas: respuestasCorrectas,
+    incorrectas: respuestasIncorrectas,
+    fecha: fecha,
+    porcentaje: porcentaje,
+    duracion: duracion,
+    promedio: promedio,
+    estado: estado
+  };
 
   fetch(WEBAPP_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-    body: bodyData.toString()
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(bodyData)
   })
-  .then(async response => {
-    const text = await response.text();
-    console.log("Respuesta del webapp:", response.status, text);
-    // intentar parsear JSON si viene
-    try { return JSON.parse(text); } catch(e){ return { raw: text }; }
-  })
+  .then(res => res.json())
   .then(data => {
-    console.log("Data parseada:", data);
-    if (data && data.url) {
-      // se devolvió el enlace del certificado
-      alert("Certificado generado: " + data.url);
-      // opcional: abrir en nueva pestaña
-      window.open(data.url, "_blank");
+    console.log("Respuesta del WebApp:", data);
+    if (data.status === "OK") {
+      alert("Certificado enviado correctamente");
+    } else {
+      alert("Error: " + data.message);
     }
   })
   .catch(err => {
     console.error("Error en fetch hacia WebApp:", err);
-    alert("No fue posible guardar en Sheets / generar certificado. Revisa consola y despliegue del WebApp.");
+    alert("No fue posible guardar en Sheets / generar certificado.");
   });
 }
+
 
 
 
