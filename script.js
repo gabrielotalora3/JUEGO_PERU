@@ -10,8 +10,8 @@ let respuestasCorrectas = 0;  // Total de respuestas correctas
 let respuestasIncorrectas = 0;// Total de respuestas incorrectas
 let puntaje = 0;              
 
-let tiempoTotal = 600;       // ⏱️ Tiempo total del juego en segundos (30 min)
-let tiempoPregunta = 40;      // ⏱️ Tiempo por pregunta en segundos
+let tiempoTotal = 420;       // ⏱️ Tiempo total del juego en segundos (30 min)
+let tiempoPregunta = 35;      // ⏱️ Tiempo por pregunta en segundos
 let intervaloTotal;           // Intervalo para el temporizador global
 let intervaloPregunta;        // Intervalo para el temporizador de cada pregunta
 let resultadoEnviado = false; // Evita envíos duplicados de resultados
@@ -130,7 +130,7 @@ function iniciarTiempoTotal() {
 // ⏱ Tiempo por pregunta
 function iniciarTiempoPregunta() {
   clearInterval(intervaloPregunta);
-  tiempoPregunta = 55;
+  tiempoPregunta = 35;
   document.getElementById("tiempo-pregunta").textContent = tiempoPregunta;
 
   intervaloPregunta = setInterval(() => {
