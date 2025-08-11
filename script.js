@@ -55,7 +55,7 @@ function guardarNombre() {
 
   // 📊 Validar número de intentos diarios
   const fecha = new Date().toISOString().split("T")[0];
-  const refIntentos = firebase.database().ref(`intentos/${numeroDocumento}/${fecha}`);
+  const refIntentos = firebase.database().ref(`intentos/${correoUsuario}/${fecha}`);
 
   refIntentos.get().then(snapshot => {
     let intentosHoy = snapshot.val() || 0;
