@@ -2,9 +2,6 @@
    VARIABLES GLOBALES DEL JUEGO
 ============================================= */
 let nombreJugador = "";
-let numeroDocumento = "";
-let numeroFicha = "";
-let nombrePrograma = "";
 let correoUsuario = "";
 
 let preguntas = [];           // Lista de preguntas cargadas
@@ -20,7 +17,7 @@ let intervaloPregunta;        // Intervalo para el temporizador de cada pregunta
 let resultadoEnviado = false; // Evita envíos duplicados de resultados
 
 // URL unificada de Google Apps Script para envío de datos
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwtylOPSMHApdhkWPcDxnAmUiX6Zn0VZJZZNtFjM45e5mfF5vyTCU8HIPsWjbyct0yM/exec";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwgBv60_kj-igabDbJjjqPvNunoZGeyt3MVVTeluAbBrkGzOAn0iNiXoIGDp7NEqgzs/exec";
 
 
 /* =============================================
@@ -257,12 +254,10 @@ function finalizarJuego() {
   clearInterval(intervaloPregunta);
   document.getElementById("pantalla-juego").classList.add("oculto");
   document.getElementById("pantalla-final").classList.remove("oculto");
-
   document.getElementById("nombre-final").textContent = nombreJugador;
   document.getElementById("puntaje-final").textContent = puntaje;
   document.getElementById("correctas").textContent = respuestasCorrectas;
   document.getElementById("incorrectas").textContent = respuestasIncorrectas;
-  document.getElementById("porcentaje-final").textContent = porcentaje.toFixed(2);
 
   // Guardar datos en Firebase y enviar a Google Sheets
   guardarResultadoFirebase(duracionSegundos, promedioPregunta, estado);
@@ -280,18 +275,10 @@ function guardarResultadoFirebase(duracion, promedio, estado) {
   const jugadorRef = firebase.database().ref("jugadores").push();
   jugadorRef.set({
     nombre: nombreJugador,
-    documento: numeroDocumento,
-    ficha: numeroFicha,
-    programa: nombrePrograma,
     correo: correoUsuario,
-    instructor: nombreInstructor,
     puntaje: puntaje,
     correctas: respuestasCorrectas,
     incorrectas: respuestasIncorrectas,
-    porcentaje: ((respuestasCorrectas / preguntas.length) * 100).toFixed(2),
-    estado: estado,
-    duracion: duracion,
-    promedioPregunta: promedio,
     fecha: new Date().toLocaleString()
   });
 }
@@ -300,18 +287,11 @@ function enviarDatosUnificados(porcentaje, duracion, promedio, estado) {
   const fecha = new Date().toLocaleString();
 
   const bodyData = new URLSearchParams({
-    "entry.1074037193": nombreJugador,
-    "entry.760554111": numeroDocumento,
-    "entry.1436076378": numeroFicha,
-    "entry.480386414": nombrePrograma,
-    "entry.446350167": correoUsuario,
-    "entry.1952037755": nombreInstructor,
-    "entry.1279592004": puntaje,
-    "entry.2118980774": respuestasCorrectas,
-    "entry.1770889491": respuestasIncorrectas,
-    "duracion": duracion,
-    "promedio": promedio,
-    "estado": estado,
+    "entry.105909403": nombreJugador,
+    "entry.1135649126": correoUsuario,
+    "entry.1441609907": puntaje,
+    "entry.1508603064": respuestasCorrectas,
+    "entry.1520154915": respuestasIncorrectas,
     "fecha": fecha
   });
 
