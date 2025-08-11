@@ -266,15 +266,39 @@ function enviarDatosUnificados(porcentaje, duracion, promedio, estado) {
     "entry.1441609907": puntaje,
     "entry.1508603064": respuestasCorrectas,
     "entry.1520154915": respuestasIncorrectas,
-    "fecha": fecha
+    "fecha": fecha,
+    "porcentaje": porcentaje,
+    "duracion": duracion,
+    "promedio": promedio,
+    "estado": estado
   });
 
   fetch(WEBAPP_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: bodyData.toString(),
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: bodyData.toString()
+  })
+  .then(async response => {
+    const text = await response.text();
+    console.log("Respuesta del webapp:", response.status, text);
+    // intentar parsear JSON si viene
+    try { return JSON.parse(text); } catch(e){ return { raw: text }; }
+  })
+  .then(data => {
+    console.log("Data parseada:", data);
+    if (data && data.url) {
+      // se devolvió el enlace del certificado
+      alert("Certificado generado: " + data.url);
+      // opcional: abrir en nueva pestaña
+      window.open(data.url, "_blank");
+    }
+  })
+  .catch(err => {
+    console.error("Error en fetch hacia WebApp:", err);
+    alert("No fue posible guardar en Sheets / generar certificado. Revisa consola y despliegue del WebApp.");
   });
 }
+
 
 
 /* =============================================
