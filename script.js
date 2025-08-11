@@ -44,15 +44,13 @@ function mostrarPantallaNombre() {
    REGISTRO DE DATOS DEL JUGADOR
 ============================================= */
 function guardarNombre() {
-  // 📥 Capturar datos del formulario
   const nombre = document.getElementById("nombre-usuario").value.trim();
   const documento = document.getElementById("numero-documento").value.trim();
   const ficha = document.getElementById("numero-ficha").value.trim();
   const programa = document.getElementById("nombre-programa").value.trim();
   const correo = document.getElementById("correo-usuario").value.trim();
 
-  // 🔍 Validaciones básicas
-  if (!nombre || !documento || !ficha || !programa || !correo ) {
+  if (!nombre || !documento || !ficha || !programa || !correo) {
     alert("Por favor, completa todos los campos.");
     return;
   }
@@ -64,35 +62,34 @@ function guardarNombre() {
   numeroDocumento = documento;
   nombrePrograma = programa;
 
+  // 📊 Validar número de intentos diarios
+  const fecha = new Date().toISOString().split("T")[0];
+  const refIntentos = firebase.database().ref(`intentos/${numeroDocumento}/${fecha}`);
 
-    // 📊 Validar número de intentos diarios
-    const fecha = new Date().toISOString().split("T")[0];
-    const refIntentos = firebase.database().ref(`intentos/${numeroDocumento}/${fecha}`);
+  refIntentos.get().then(snapshot => {
+    let intentosHoy = snapshot.val() || 0;
 
-    refIntentos.get().then(snapshot => {
-      let intentosHoy = snapshot.val() || 0;
+    if (intentosHoy >= 3) {
+      alert("❌ Límite de 3 intentos diarios alcanzado.");
+      return;
+    }
 
-      if (intentosHoy >= 3) {
-        alert("❌ Límite de 3 intentos diarios alcanzado.");
-        return;
-      }
+    // 📌 Registrar intento
+    intentosHoy++;
+    refIntentos.set(intentosHoy);
 
-      // 📌 Registrar intento
-      intentosHoy++;
-      refIntentos.set(intentosHoy);
+    if (intentosHoy === 1) alert("✅ Intento #1 de 3 hoy. ¡Suerte!");
+    if (intentosHoy === 2) alert("⚡ Intento #2 de 3 hoy.");
+    if (intentosHoy === 3) alert("🚨 Último intento del día (#3 de 3).");
 
-      if (intentosHoy === 1) alert("✅ Intento #1 de 3 hoy. ¡Suerte!");
-      if (intentosHoy === 2) alert("⚡ Intento #2 de 3 hoy.");
-      if (intentosHoy === 3) alert("🚨 Último intento del día (#3 de 3).");
-
-      // 🔄 Cargar preguntas y mostrar pantalla de temas
-      cargarPreguntasDesdeFirebase(() => {
-        document.getElementById("pantalla-nombre").classList.add("oculto");
-        document.getElementById("pantalla-temas").classList.remove("oculto");
-      });
+    // 🔄 Cargar preguntas y mostrar pantalla de temas
+    cargarPreguntasDesdeFirebase(() => {
+      document.getElementById("pantalla-nombre").classList.add("oculto");
+      document.getElementById("pantalla-temas").classList.remove("oculto");
     });
   });
 }
+
 
 
 /* =============================================
